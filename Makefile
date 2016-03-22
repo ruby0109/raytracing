@@ -2,7 +2,7 @@ EXEC = raytracing
 .PHONY: all
 all: $(EXEC)
 
-CC ?= gcc
+CC ?= gcc -mavx
 CFLAGS = \
 	-std=gnu99 -Wall -O0 -g
 LDFLAGS = \
