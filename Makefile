@@ -2,11 +2,14 @@ EXEC = raytracing
 .PHONY: all
 all: $(EXEC)
 
-CC ?= gcc -mavx
+CC ?= gcc 
 CFLAGS = \
-	-std=gnu99 -Wall -O0 -g
+	-std=gnu99 -Wall -O0 \
+    -D__forceinline="__attribute__((always_inline))"
 LDFLAGS = \
-	-lm
+	-lm 
+
+PROFILE = 1
 
 ifeq ($(strip $(PROFILE)),1)
 PROF_FLAGS = -pg
@@ -37,6 +40,10 @@ use-models.h: models.inc Makefile
 	        -e 's/^rectangular /append_rectangular/g' \
 	        -e 's/rectangular[0-9]/(\&&, \&rectangulars);/g' \
 	        -e 's/ = {//g' >> use-models.h
+
+check: $(EXEC)
+	@./$(EXEC) && diff -u baseline.ppm out.ppm || (echo Fail; exit)
+	@echo "Verified OK"
 
 clean:
 	$(RM) $(EXEC) $(OBJS) use-models.h \

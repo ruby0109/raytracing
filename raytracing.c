@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//#include "math-toolkit.h"
-#include "math-toolkit_opt.h"
+#include "math-toolkit.h"
 #include "primitives.h"
 #include "raytracing.h"
 #include "idx_stack.h"

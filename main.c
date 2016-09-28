@@ -57,16 +57,6 @@ int main()
         write_to_ppm(outfile, pixels, ROWS, COLS);
         fclose(outfile);
     }
-   
-      FILE *output;
-#if defined(OPT)
-    output = fopen("opt.txt", "a");
-    printf("OPT!\n");
-#else
-    output = fopen("orig.txt", "a"); 
-#endif
-    fprintf(output, "Execution time: %lf \n", diff_in_second(start, end));
-    fclose(output);
 
     delete_rectangular_list(&rectangulars);
     delete_sphere_list(&spheres);
