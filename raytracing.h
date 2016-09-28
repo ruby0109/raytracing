@@ -3,6 +3,7 @@
 
 #include "objects.h"
 #include <stdint.h>
+#include <omp.h>
 
 void raytracing(uint8_t *pixels, color background_color,
                 rectangular_node rectangulars, sphere_node spheres,
